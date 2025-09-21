@@ -223,12 +223,12 @@
         // Main generation loop
         function generateTexts() {
             if (!isPaused) {
-                const textsToGenerate = Math.floor(generationRate / 5); // Generate more texts per cycle
+                const textsToGenerate = Math.max(Math.floor(generationRate / 3), 2); // Ensure at least 2 texts per cycle
                 for (let i = 0; i < textsToGenerate; i++) {
                     createTextElement();
                 }
             }
-            setTimeout(generateTexts, 100); // Run every 100ms
+            setTimeout(generateTexts, 80); // Run every 80ms for faster generation
         }
         
         // Handle window resize
@@ -246,6 +246,11 @@
             });
             updateStats();
         });
+        
+        // Create initial burst of texts immediately
+        for (let i = 0; i < 10; i++) {
+            setTimeout(() => createTextElement(), i * 100);
+        }
         
         // Start the generation
         generateTexts();
