@@ -134,7 +134,7 @@
         
         let activeTexts = [];
         let totalGenerated = 0;
-        let generationRate = 5; // texts per second
+        let generationRate = 10; // texts per second
         let isPaused = false;
         let maxActiveTexts = 200; // Prevent browser overload
         
@@ -223,7 +223,7 @@
         // Main generation loop
         function generateTexts() {
             if (!isPaused) {
-                const textsToGenerate = Math.floor(generationRate / 10);
+                const textsToGenerate = Math.floor(generationRate / 20);
                 for (let i = 0; i < textsToGenerate; i++) {
                     createTextElement();
                 }
